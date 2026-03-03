@@ -2,6 +2,12 @@ function Notify(message, type)
     if Link.notifications == 'framework' and NotifyViaFramework ~= nil then
         NotifyViaFramework(message, type)
         return
+    elseif Link.notifications == 'gs-notify' then
+        exports['gs-notify']:Notify(source, {
+                type = type,
+                message = message,
+                duration = 5000
+            })
     elseif Link.notifications == 'codem-notification' then
         TriggerEvent('codem-notification:Create', message, type, nil, 4000)
         return
